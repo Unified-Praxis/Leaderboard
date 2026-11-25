@@ -21,7 +21,9 @@ jobs:
           STRETY_TOKEN: ${{ secrets.STRETY_TOKEN }}
           STRETY_SHOUTOUTS_PATH: /shoutouts
           FISCAL_START_MONTH: "1"
-        run: python strety_shoutouts.py
+        run: 
+            python strety_shoutouts.py --peek
+            python strety_shoutouts.py
       - name: Commit shoutouts.json if changed
         run: |
           git config user.name "github-actions[bot]"
