@@ -21,7 +21,7 @@ import urllib.request, urllib.parse, urllib.error
 # ---- CONFIG -------------------------------------------------------------
 BASE = "https://2.strety.com/api/v1"
 SHOUTOUTS_PATH = os.environ.get("STRETY_SHOUTOUTS_PATH", "/shoutouts")   # <- verify
-FY_START_MONTH = int(os.environ.get("FISCAL_START_MONTH", "1"))          # 1 = calendar quarters
+FY_START_MONTH = int(os.environ.get("FISCAL_START_MONTH", "9"))          # 1 = calendar quarters
 PAGE_SIZE = 20                                                           # API max per request
 MAX_PHOTO_BYTES = 250_000
 TOKEN = os.environ.get("STRETY_TOKEN", "")
