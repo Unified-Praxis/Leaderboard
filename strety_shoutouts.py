@@ -102,12 +102,14 @@ def rel_ids(d, *names):
     """IDs from either a flat field (sender_id / recipient_ids) or a relationship block."""
     for n in names:
         v = d.get(n) or d.get(n + "_id") or d.get(n + "_ids")
-        if v is None and n in d["_rel"]:
+        if v is None and n in d.get("_rel", {}):
             v = (d["_rel"][n] or {}).get("data")
         if v is None:
             continue
         v = v if isinstance(v, list) else [v]
-        return [str(x["id"] if isinstance(x, dict) else x) for x in v]
+        ids = [str(x["id"]) if isinstance(x, dict) else str(x) for x in v if x is not None]
+        if ids:
+            return ids
     return []
 
 
