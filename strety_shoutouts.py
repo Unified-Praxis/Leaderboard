@@ -121,11 +121,19 @@ def parse_person(item):
 def parse_shoutout(item):
     d = attrs(item)
     when = pick(d, "created_at", "inserted_at", "date")
-    sender = rel_ids(d, "sender", "from", "author", "giver", "created_by", "user")
+    sender = rel_ids(d, "creator", "sender", "from", "author", "giver", "created_by", "user")
+    val = pick(d, "core_value_name", "core_value", "value")
+    if not val and isinstance(d.get("recognized_core_values"), list):
+        titles = [
+            x.get("title") if isinstance(x, dict) else x
+            for x in d["recognized_core_values"]
+        ]
+        titles = [str(t).strip() for t in titles if t]
+        val = titles[0] if titles else ""
     return {"id": str(d["id"]), "date": when,
             "from": sender[0] if sender else None,
             "to": rel_ids(d, "recipients", "recipient", "receivers", "to", "people"),
-            "value": pick(d, "core_value_name", "core_value", "value") or ""}
+            "value": val or ""}
 
 
 # ---- Build --------------------------------------------------------------
