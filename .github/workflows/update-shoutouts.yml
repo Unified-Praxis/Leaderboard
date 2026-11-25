@@ -20,7 +20,7 @@ jobs:
         env:
           STRETY_TOKEN: ${{ secrets.STRETY_TOKEN }}
           STRETY_SHOUTOUTS_PATH: /shoutouts
-          FISCAL_START_MONTH: "1"
+          FISCAL_START_MONTH: "9"
         run:
             python strety_shoutouts.py
       - name: Commit shoutouts.json if changed
