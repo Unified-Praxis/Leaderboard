@@ -21,8 +21,7 @@ jobs:
           STRETY_TOKEN: ${{ secrets.STRETY_TOKEN }}
           STRETY_SHOUTOUTS_PATH: /shoutouts
           FISCAL_START_MONTH: "1"
-        run: 
-            python -c "import json; d=json.load(open('shoutouts.json')); print('PEOPLE_SAMPLE:', d.get('people', [])[:3]); print('SHOUTOUTS_SAMPLE:', d.get('shoutouts', [])[:3]); print('NON_NULL_FROM:', sum(1 for s in d.get('shoutouts', []) if s.get('from'))); print('VALUES:', sorted({s.get('value') for s in d.get('shoutouts', []) if s.get('value')}))"
+        run:
             python strety_shoutouts.py
       - name: Commit shoutouts.json if changed
         run: |
