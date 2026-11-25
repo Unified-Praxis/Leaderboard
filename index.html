@@ -352,6 +352,10 @@ $('#sample').onclick = () => {
 };
 ['#q', '#v', '#all'].forEach(s => $(s).onchange = render);
 document.querySelectorAll('input[name=m]').forEach(r => r.onchange = render);
+fetch('./shoutouts.json', { cache: 'no-store' })
+  .then(r => r.ok ? r.json() : null)
+  .then(d => { if (d && Array.isArray(d.people) && Array.isArray(d.shoutouts)) setData(d); })
+  .catch(() => {});
 render();
 </script>
 </body>
