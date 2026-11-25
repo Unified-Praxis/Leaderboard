@@ -46,7 +46,7 @@ def refresh_token():
 def get(url, retry=True):
     time.sleep(1.05)
     req = urllib.request.Request(url, headers={"Authorization": f"Bearer {TOKEN}",
-                                           "Accept": "application/json",
+                                           "Accept": "application/vnd.api+json",
                                            "User-Agent": "UnifiedPraxis-Leaderboard/1.0"})
     try:
         return json.load(urllib.request.urlopen(req))
